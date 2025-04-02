@@ -1,4 +1,13 @@
-﻿using System.Threading.Tasks.Dataflow;
+﻿//============================================================
+// === CIT 190 Northwestern Michigan College               ===
+// === Lab 9 Exercise #2: Task Forces                      ===
+// === Demonstrate Operator Overloading with a game        ===
+// === involving 'Task Forces' made up of 'Battleships'    ===
+// === Michael J. Wildner Sr.  wildnem@mail.nmc.edu        ===
+// === Created: 3/26/2025        Last Modified: 4/2/2025   ===
+//============================================================
+
+using System.Threading.Tasks.Dataflow;
 
 namespace TaskForces
 {
@@ -50,7 +59,7 @@ namespace TaskForces
             Console.WriteLine("=====================================");
             const int TF_LIMIT = 5;
             const int MAX_SIZE = 20;
-            const int MIN_SIZE = 1;
+            const int MIN_SIZE = 0;
             const int ADD_SHIPS = 5;
             const int SUB_SHIPS = 5;
 
@@ -87,7 +96,7 @@ namespace TaskForces
                     Console.WriteLine($"Random add battleship to Task Force # {i+1}");
                     if (taskForces[i].battleships + 1 <= MAX_SIZE)
                     {
-                        taskForces[i].battleships++;
+                        taskForces[i]++;
                     }
                     else
                     {
@@ -99,7 +108,7 @@ namespace TaskForces
                     Console.WriteLine($"Random subtract battleship from Task Force {i+1}");
                     if (taskForces[i].battleships - 1 >= MIN_SIZE)
                     {
-                        taskForces[i].battleships--;
+                        taskForces[i]--;
                     }
                     else
                     {
@@ -148,7 +157,7 @@ namespace TaskForces
 
             // random TaskForce object to subtract
             TaskForce numToSub = new TaskForce();
-            numToSub.battleships = r.Next(1, SUB_SHIPS);
+            numToSub.battleships = r.Next(1, SUB_SHIPS) + 2;
             Console.WriteLine($"Subtracting {numToSub.battleships} from each Task Force...");
             for (int i = 0; i < taskForces.Length; i++)
             {
@@ -172,11 +181,12 @@ namespace TaskForces
 
 
             Console.WriteLine("=====================================");
-            Console.WriteLine("");
+            Console.WriteLine("Generating random number in range of 6 -> 15...");
+            Console.WriteLine(); 
             // random TaskForce object for comparison
             TaskForce numToCompare = new TaskForce();
-            numToCompare.battleships = r.Next(1, 10);
-            Console.WriteLine($"Task Forces with #of battleships above or below {numToCompare.battleships}:");
+            numToCompare.battleships = r.Next(1, 10) + 5;
+            Console.WriteLine($"Task Forces with # of battleships above or below {numToCompare.battleships}:");
             for (int i = 0; i < taskForces.Length; i++)
             {
                 if (taskForces[i] > numToCompare)
